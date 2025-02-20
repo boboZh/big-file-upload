@@ -6,9 +6,13 @@ const FileSchema = mongoose.Schema(
       type: String,
       required: true,
     },
+    id: {
+      type: String,
+      required: true,
+    },
   },
   {
-    timeStamps: true,
+    timestamps: true,
   }
 );
 
