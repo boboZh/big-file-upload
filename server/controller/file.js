@@ -8,6 +8,10 @@ const getFileList = () => {
   });
 };
 
+const uploadFile = () => {
+  return new Promise((resolve, reject) => {});
+};
+
 const addFile = () => {
   return new Promise((resolve, reject) => {
     const url = "/public/images/test";
@@ -25,4 +29,5 @@ const addFile = () => {
 module.exports = {
   getFileList,
   addFile,
+  uploadFile,
 };
