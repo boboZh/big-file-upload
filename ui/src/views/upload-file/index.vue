@@ -10,15 +10,21 @@ const state = reactive({
   progress: 0,
   url: undefined,
 })
-const onFileChange = (val) => {
+const handleClick = () => {
+  console.log('input click')
+}
+const onFileChange = (event) => {
+  console.log('onFileChange: ', event.target.files[0])
   if (!inputRef.value.files.length) return
   const file = inputRef.value.files[0]
   console.log('file: ', file)
   const formData = new FormData()
-  formData.set('file', file)
-  formData.set('filename', file.name)
+  formData.append('file', file)
   axios
     .post('/api/file/upload', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
       onUploadProgress: (progressEvent) => {
         const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total)
         state.progress = percentCompleted

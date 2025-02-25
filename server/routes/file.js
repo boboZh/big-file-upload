@@ -1,9 +1,10 @@
 const express = require("express");
 const { route } = require(".");
 const router = express.Router();
-const { upload } = require("../diskStorage/index");
+const { uploadFile } = require("../diskStorage/index");
+// const { upload } = require("../middleware/uploadFile");
 
-const { getFileList, uploadFile } = require("../controller/file");
+const { getFileList } = require("../controller/file");
 const { SuccessModel, ErrorModel } = require("../model/resModel");
 
 router.get("/list", (req, res, next) => {
@@ -23,8 +24,7 @@ router.post("/add", (req, res, next) => {
   console.log("ctx: ", req.body);
   return Promise.resolve(res.json(new SuccessModel(JSON.stringify(req.body))));
 });
-router.post("/upload", async (req, res, next) => {
-  console.log("req: ", req.request, Object.keys(res));
+router.post("/upload", uploadFile, async (req, res, next) => {
   const fieldName = req.file.originalname;
   const file = upload.single(fieldName);
   if (!file) {
