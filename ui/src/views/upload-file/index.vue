@@ -1,6 +1,6 @@
 <template>
   <div class="upload-file">
-    <input type="file" ref="inputRef" accept="image/*" @input="onFileChange" />
+    <input type="file" ref="inputRef" accept="image/*" name="avatar" @input="onFileChange" />
   </div>
 </template>
 <script lang="ts" setup>
